@@ -3,7 +3,7 @@
 #include <list>
 using namespace std;
 
-class node{
+typedef struct node{
 
 public:
 
@@ -11,11 +11,9 @@ int number;
 list <char> word;
 node *Llink;
 node *Rlink;
-node(int value =0);
 
-};
+} node;
 
-node::node(int value):number(value),Rlink(0),Llink(0){}  //constructor
 
 int main(int argc,char* argv[]){
 
@@ -49,13 +47,15 @@ int main(int argc,char* argv[]){
        {
          if(node1)  //第一個人
          {
-            last=new node(tag);
+            last=new node;
+			last->number=tag;
             head=last;
             node1=false;
          }
          else
          {
-            node* t=new node(tag);
+            node* t=new node;
+			t->number=tag;
             last->Rlink=t;
             t->Llink=last;
             last=last->Rlink;
@@ -71,6 +71,7 @@ int main(int argc,char* argv[]){
     }
 
     node *start=head;
+	cout<<head->number;
     while(start->number!=first) //把start指向開始的人
     {
         start=start->Rlink;
